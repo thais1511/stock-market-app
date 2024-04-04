@@ -1,0 +1,75 @@
+[versions]
+agp = "8.3.1"
+kotlin = "1.9.0"
+coreKtx = "1.12.0"
+junit = "4.13.2"
+junitVersion = "1.1.5"
+espressoCore = "3.5.1"
+lifecycleRuntimeKtx = "2.7.0"
+activityCompose = "1.8.2"
+composeBom = "2023.08.00"
+lifecycleVMComposeVersion = "2.4.1"
+flowLayoutVersion = "0.17.0"
+pagingCompose = "1.0.0-alpha14"
+swipeRefresh = "0.24.2-alpha"
+navDestination = "1.1.2-beta"
+coilVersion = "1.4.0"
+daggerHilt = "2.40.5"
+hiltViewModel = "1.0.0-alpha03"
+hiltCompiler = "1.0.0"
+hiltNavigationCompose = "1.0.0"
+retrofit = "2.9.0"
+okHttp3Version = "5.0.0-alpha.3"
+roomVersion = "2.4.2"
+devToolsKspVersion = "1.6.10-1.0.2"
+daggerHiltGradlePlugin = "2.44"
+openCSV = "5.5.2"
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+
+androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycleVMComposeVersion" }
+androidx-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
+com-google-accompanist-flowlayout = { group = "com.google.accompanist", name = "accompanist-flowlayout", version.ref= "flowLayoutVersion" }
+androidx-paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref= "pagingCompose" }
+com-google-accompanist-swiperefresh = { group = "com.google.accompanist", name = "accompanist-swiperefresh", version.ref= "swipeRefresh" }
+io-github-raamcosta-compose-destination-core = { group = "io.github.raamcosta.compose-destinations", name = "core", version.ref= "navDestination" }
+io-github-raamcosta-compose-destination-ksp = { group = "io.github.raamcosta.compose-destinations", name = "ksp", version.ref= "navDestination" }
+io-coil-kt-compose = { group = "io.coil-kt", name = "coil-compose", version.ref= "coilVersion" }
+
+com-google-dagger-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref= "daggerHilt" }
+com-google-dagger-hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref= "daggerHilt" }
+androidx-hilt-lifecycle-viewmodel = { group = "androidx.hilt", name = "hilt-lifecycle-viewmodel", version.ref= "hiltViewModel" }
+androidx-hilt-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref= "hiltCompiler" }
+androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref= "hiltNavigationCompose" }
+
+com-squareup-retrofit2-retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref= "retrofit" }
+com-squareup-retrofit2-retrofit-converter-moshi = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref= "retrofit" }
+com-squareup-okhttp3-okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref= "okHttp3Version" }
+com-squareup-okhttp3-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref= "okHttp3Version" }
+
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref= "roomVersion" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref= "roomVersion" }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref= "roomVersion" }
+
+com-opencsv = { group = "com.opencsv", name = "opencsv", version.ref= "openCSV" }
+
+[plugins]
+androidApplication = { id = "com.android.application", version.ref = "agp" }
+jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+devToolsKsp = { id = "com.google.devtools.ksp", version.ref = "devToolsKspVersion" }
+daggerHiltGradlePlugin = { id = "com.google.dagger.hilt.android", version.ref = "daggerHiltGradlePlugin"}
+
