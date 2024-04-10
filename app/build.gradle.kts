@@ -88,9 +88,9 @@ dependencies {
 
     //Dagger Hilt
     implementation(libs.com.google.dagger.hilt.android)
-    kapt(libs.com.google.dagger.hilt.android.compiler)
+    ksp(libs.com.google.dagger.hilt.android.compiler)
     implementation(libs.androidx.hilt.lifecycle.viewmodel)
-    kapt(libs.androidx.hilt.compiler)
+    ksp(libs.androidx.hilt.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
 
     //Retrofit
@@ -101,6 +101,6 @@ dependencies {
 
     //Room
     implementation(libs.androidx.room.runtime)
-    kapt(libs.androidx.room.compiler)
+    ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
 }
