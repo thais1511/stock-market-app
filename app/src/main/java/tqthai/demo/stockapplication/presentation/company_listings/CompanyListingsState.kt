@@ -1,4 +1,10 @@
 package tqthai.demo.stockapplication.presentation.company_listings
 
-class CompanyListingsState {
-}
+import tqthai.demo.stockapplication.domain.model.CompanyListing
+
+data class CompanyListingsState(
+    val companies: List<CompanyListing> = emptyList(),
+    val isLoading: Boolean = false,
+    val isRefreshing: Boolean = false,
+    val searchQuery: String = ""
+)
