@@ -11,8 +11,8 @@ import javax.inject.Singleton
 
 @Singleton
 class CompanyListingParser @Inject constructor(): CSVParser<CompanyListing> {
-    override suspend fun parse(inputStream: InputStream): List<CompanyListing> {
-        val csvReader = CSVReader(InputStreamReader(inputStream))
+    override suspend fun parse(byteStream: InputStream): List<CompanyListing> {
+        val csvReader = CSVReader(InputStreamReader(byteStream))
         return withContext(Dispatchers.IO){
             csvReader.readAll()
                 .drop(1)
