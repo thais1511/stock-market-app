@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import tqthai.demo.stockapplication.domain.repository.StockRepository
 import tqthai.demo.stockapplication.util.Resource
@@ -34,12 +35,15 @@ class CompanyListingsViewModel @Inject constructor(
             is CompanyListingsEvent.OnSearchQueryChange -> {
                 state = state.copy(searchQuery = event.query)
                 searchJob?.cancel()
-                getCompanyListings()
+                searchJob = viewModelScope.launch {
+                    delay(500)
+                    getCompanyListings()
+                }
             }
         }
     }
 
-    fun getCompanyListings(
+    private fun getCompanyListings(
         fetchFromRemote: Boolean = false,
         query: String = ""
     ){
@@ -59,7 +63,6 @@ class CompanyListingsViewModel @Inject constructor(
                             }
                         }
                     }
-
                 }
         }
     }

@@ -41,8 +41,11 @@ class MainActivity : ComponentActivity() {
                     val navHostController = rememberNavController()
                     NavHost(navController = navHostController, startDestination = Screen.CompanyListingScreen.route) {
                         composable(route = Screen.CompanyListingScreen.route) {
-                            CompanyListingsScreen(navController = navHostController)
+                            CompanyListingsScreen(navController = navHostController) {
+
+                            }
                         }
+
                     }
                 }
             }
