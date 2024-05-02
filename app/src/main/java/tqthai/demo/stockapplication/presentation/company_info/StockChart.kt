@@ -2,7 +2,6 @@ package tqthai.demo.stockapplication.presentation.company_info
 
 import android.graphics.Paint
 import androidx.compose.foundation.Canvas
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -17,8 +16,8 @@ import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import tqthai.demo.stockapplication.domain.model.CompanyInfo
 import tqthai.demo.stockapplication.domain.model.IntradayInfo
+import kotlin.math.round
 import kotlin.math.roundToInt
 
 @Composable
@@ -39,7 +38,7 @@ fun StockChart(
         infos.minOfOrNull { it.close }?.toInt() ?: 0
     }
     val density = LocalDensity.current
-    val textPain = remember(density) {
+    val textPaint = remember(density) {
         Paint().apply {
             color = android.graphics.Color.WHITE
             textAlign = Paint.Align.CENTER
@@ -48,7 +47,6 @@ fun StockChart(
     }
 
     Canvas(modifier = modifier) {
-        val height = size.height
         val spacerPerHour = (size.width - spacing) / infos.size
         (0 until infos.size - 1 step 2).forEach { i ->
             val info = infos[i]
@@ -59,20 +57,18 @@ fun StockChart(
                     hour.toString(),
                     spacing * i + spacerPerHour,
                     size.height - 5, // at the bottom with margin = 5
-                    textPain
+                    textPaint
                 )
             }
         }
         val priceStep = (upperValue - lowerValue) / 5f
-        val topY = size.height - spacing
-        val priceLabelCount = 5
-        (0..priceLabelCount).forEach { i ->
+        (0..4).forEach { i ->
             drawContext.canvas.nativeCanvas.apply {
                 drawText(
-                    (lowerValue + i * priceStep).toString(),
+                    round(lowerValue + priceStep * i).toString(),
                     30f,
-                    topY - i * size.height / priceLabelCount,
-                    textPain
+                    size.height - spacing - i * size.height / 5f,
+                    textPaint
                 )
             }
         }

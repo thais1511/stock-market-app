@@ -2,6 +2,8 @@ package tqthai.demo.stockapplication.presentation.company_info
 
 import android.widget.Space
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -9,6 +11,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
 import androidx.compose.material3.HorizontalDivider
@@ -17,6 +21,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -34,11 +39,16 @@ fun CompanyInfoScreen(
 ) {
     val state = viewModel.state
     if (state.error == null) {
+        val scrollableState = rememberScrollState()
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .background(DarkBlue)
                 .padding(16.dp)
+                .verticalScroll(
+                    enabled = true,
+                    state = scrollableState
+                )
         ) {
             state.company?.let { company ->
                 Text(
@@ -80,7 +90,7 @@ fun CompanyInfoScreen(
                 if (state.stockInfos.isNotEmpty()) {
                     Spacer(modifier = Modifier.height(16.dp))
                     Text(text = "Market Summary")
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(32.dp))
                     StockChart(
                         infos = state.stockInfos,
                         modifier = Modifier
