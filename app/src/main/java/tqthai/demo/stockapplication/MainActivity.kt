@@ -3,26 +3,17 @@ package tqthai.demo.stockapplication
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.ramcosta.composedestinations.DestinationsNavHost
+import androidx.navigation.navArgument
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import tqthai.demo.stockapplication.presentation.company_info.CompanyInfoScreen
 import tqthai.demo.stockapplication.presentation.company_listings.CompanyListingsScreen
 import tqthai.demo.stockapplication.ui.theme.StockApplicationTheme
 import tqthai.demo.stockapplication.util.Screen
@@ -39,13 +30,26 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val navHostController = rememberNavController()
-                    NavHost(navController = navHostController, startDestination = Screen.CompanyListingScreen.route) {
-                        composable(route = Screen.CompanyListingScreen.route) {
-                            CompanyListingsScreen(navController = navHostController) {
-
+                    NavHost(navController = navHostController, startDestination = Screen.CompanyListing.route) {
+                        composable(route = Screen.CompanyListing.route) {
+                            CompanyListingsScreen() { symbol ->
+                                navHostController.navigate(Screen.CompanyInfo.route + "&symbol=$symbol")
                             }
                         }
-
+                        composable(route = Screen.CompanyInfo.route + "&symbol={symbol}",
+                            arguments = listOf(
+                                navArgument(name = "symbol"){
+                                    type = NavType.StringType
+                                    defaultValue = ""
+                                    nullable = false
+                                }
+                            )
+                        ){ entry ->
+                            val symbol = entry.arguments?.getString("symbol") ?: ""
+                            CompanyInfoScreen(
+                                symbol = symbol
+                            )
+                        }
                     }
                 }
             }

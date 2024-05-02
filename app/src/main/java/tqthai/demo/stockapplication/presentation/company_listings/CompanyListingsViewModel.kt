@@ -36,7 +36,7 @@ class CompanyListingsViewModel @Inject constructor(
                 state = state.copy(searchQuery = event.query)
                 searchJob?.cancel()
                 searchJob = viewModelScope.launch {
-                    delay(500)
+                    delay(500L)
                     getCompanyListings()
                 }
             }
@@ -44,8 +44,8 @@ class CompanyListingsViewModel @Inject constructor(
     }
 
     private fun getCompanyListings(
-        fetchFromRemote: Boolean = false,
-        query: String = ""
+        query: String = state.searchQuery.lowercase(),
+        fetchFromRemote: Boolean = false
     ){
         viewModelScope.launch {
             stockRepository.getCompanyListing(fetchFromRemote = fetchFromRemote, query)
